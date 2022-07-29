@@ -45,7 +45,7 @@ export class Test3 extends Component {
     // 根据几何体和材质创建物体
     const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
 
-    const geometry = new THREE.SphereGeometry(2, 32, 16);
+    const geometry = new THREE.SphereGeometry(2.5, 32, 16);
     const material = new THREE.MeshBasicMaterial({
       // transparent: true,
       wireframe: true, // 将几何图形渲染为线框
