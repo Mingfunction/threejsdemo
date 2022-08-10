@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import {} from "three/examples/jsm/controls/DragControls";
+import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader";
 
-export class Test7 extends Component {
+export class Test7_1 extends Component {
   state = {
     gui: null,
   };
@@ -41,25 +41,18 @@ export class Test7 extends Component {
     const dirLight = new THREE.DirectionalLight(0xffffff, 0.5);
     dirLight.position.set(0, 10, 10);
     scene.add(dirLight);
-    const cubeTextureLoader = new THREE.CubeTextureLoader();
-    const envMapTexture = cubeTextureLoader.load([
-      "./textures/environmentMaps/Park3Med/px.jpg",
-      "./textures/environmentMaps/Park3Med/nx.jpg",
-      "./textures/environmentMaps/Park3Med/py.jpg",
-      "./textures/environmentMaps/Park3Med/ny.jpg",
-      "./textures/environmentMaps/Park3Med/pz.jpg",
-      "./textures/environmentMaps/Park3Med/nz.jpg",
-    ]);
-    // 给整个场景添加环境贴图
-    scene.background = envMapTexture;
-    // 给所有物体添加默认环境贴图
-    scene.environment = envMapTexture;
+    const rgbeLoader = new RGBELoader();
+    rgbeLoader.loadAsync("./textures/hdr/002.hdr").then((texture) => {
+      texture.mapping = THREE.EquirectangularReflectionMapping;
+      scene.background = texture;
+      scene.environment = texture;
+    });
 
     const sphereGeometry = new THREE.SphereBufferGeometry(1, 20, 20);
     const material = new THREE.MeshStandardMaterial({
       metalness: 0.9,
       roughness: 0.1,
-      envMap: envMapTexture,
+      // envMap: envMapTexture,
     });
     const sphere = new THREE.Mesh(sphereGeometry, material);
 
@@ -71,4 +64,4 @@ export class Test7 extends Component {
   }
 }
 
-export default Test7;
+export default Test7_1;
