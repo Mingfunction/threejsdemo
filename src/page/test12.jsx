@@ -66,7 +66,7 @@ export class Test12 extends Component {
     // 传递数据上面说了在内部有 a_Position 所以需要传递数据
     let vertexBuffer = gl.createBuffer();
     // 绑定顶点缓冲区对象
-    gl.bindBuffer(gl.ARRER_BUFFER, vertexBuffer);
+    gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
     // 向顶点缓冲区对象中写入数据
     let vertices = new Float32Array([
       0.0, 0.5,
@@ -77,14 +77,14 @@ export class Test12 extends Component {
     ]);
 
     // gl.STATIC_DRAW 标识数据不会变 gl.DYNAMIC_DRAW 标识数据会变
-    gl.bufferData(gl.ARRER_BUFFER, vertices, gl.STATIC_DRAW);
+    gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
 
     // 获取顶点数据着色器的 a_Position 变量的位置
     let a_Position = gl.getAttribLocation(program, "a_Position");
 
     // 2个值做为一组数据 分配给 a_Position
     // 告诉opengl如何解析数据
-    gl.vertexAttribPoionter(a_Position, 2, gl.FLOAT, false, 0, 0);
+    gl.vertexAttribPointer(a_Position, 2, gl.FLOAT, false, 0, 0);
 
     // 启用 a_Position 变量
     gl.enableVertexAttribArray(a_Position);
