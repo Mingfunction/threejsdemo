@@ -4,10 +4,10 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import vertex from "../utils/basic/vertex.glsl";
 import fragment from "../utils/basic/fragment.glsl";
 // eslint-disable-next-line import/no-webpack-loader-syntax
-import test from "!!raw-loader!../utils/basic/test.txt";
+// import test from "../utils/basic/test.txt";
 
-console.log(vertex);
-console.log(test);
+// console.log(vertex);
+// console.log(test);
 
 export class Test14 extends Component {
   state = {
